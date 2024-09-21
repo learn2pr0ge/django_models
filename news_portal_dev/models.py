@@ -55,6 +55,10 @@ class Post(models.Model):
     def preview(self):
         return self.content[:124] + '...'
 
+    def __str__(self):
+        return self.title + '\n' + self.content[:124] + '...'
+
+
 class PostCategory(models.Model):
     post_con = models.ForeignKey(Post, on_delete=models.CASCADE)
     category_con = models.ForeignKey(Category, on_delete=models.CASCADE)

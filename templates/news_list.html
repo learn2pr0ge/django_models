@@ -1,0 +1,28 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+<!-- Название у нас будет Product -->
+{% block title %}
+<h3>News</h3>
+{% endblock title %}
+
+{% block content %}
+{% if news %}
+Общее количество статей: {{ news|length }}
+<table>
+    <tr>
+        <td>Заголовок</td>
+        <td>Дата публикации</td>
+        <td>Статья</td>
+    </tr>
+
+    {% for new in news %}
+    <tr>
+        <td>{{ new.title }}</td>
+        <td>{{ new.timestamp |date:'M d Y' }}</td>
+        <td>{{ new.content| badwords }} </td>
+        {% endfor %}
+    </tr>
+</table>
+{% endif %}
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% endblock content %}
