@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 # Create your models here.
 
 class Author(models.Model):
@@ -55,8 +55,12 @@ class Post(models.Model):
     def preview(self):
         return self.content[:124] + '...'
 
+    def get_absolute_url(self):
+        return reverse('news_detail', args=[str(self.id)])
+
     def __str__(self):
         return self.title + '\n' + self.content[:124] + '...'
+
 
 
 class PostCategory(models.Model):
